@@ -35,8 +35,80 @@
         </div>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <MemberName>APTA Mobile V2.2</MemberName>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="js/jquery.mobile-1.1.1.min.css" />
+        <script src="js/jquery-1.7.1.min.js"></script>
+        <script src="js/jquery.mobile-1.2.1.min.js"></script>
+        <script src="js/apigee.min.js"></script>
+       
         <script type="text/javascript">
             app.initialize();
         </script>
+        <script type="text/javascript">
+        
+
+            //We start by creating an instance of Apigee.Client to carry our App Services credentials        
+            var apigee = new Apigee.Client({
+                orgName:'Steevo777',
+                appName:'sandbox'
+            });
+            
+            // If you lock down your sandbox or use any other app
+            // a user login is required to access the data.
+            //apigee.login("myuser","mypass");
+
+            // We now define my_Members within the global scope
+            var my_Members = new Apigee.Collection( { "client":apigee, "type":"members" } );
+
+
+            $(document).ready(function () {
+                $('#create-button').bind('click', createMember);
+                
+                navigator.geolocation.getCurrentPosition(loadMembers)
+            });
+
+            function loadMembers (location) {
+                
+                my_Members.fetch( // Actual network call
+
+                    // Success Callback
+                    function () {
+                        $('#Members-list').empty();
+                        
+                        while ( my_Members.hasNextEntity() ) {
+                            var current_Member = my_Members.getNextEntity();
+
+                            // Output the Member on the page
+                            $('#Members-list').append('<li><h3>'+current_Member.get('MemberName')+'</h3><p>'+current_Member.get('MemberNumber')+'</p></li>');
+                        }
+                        
+                        // Re-apply jQuery Mobile styles
+                        $('#Members-list').listview('refresh');
+                    },
+
+                    // Failure Callback
+                    function () { alert("read failed"); }
+                );
+            }
+
+            function createMember() {
+
+                new_Member = { "MemberName":$("#MemberName-field").val(),
+                            "MemberNumber":$("#MemberNumber-field").val() };
+
+                my_Members.addEntity(new_Member, function (error, response) {
+                    if (error) {
+                        alert('write failed');
+                    } else {
+                        $("#MemberName-field").val(""), $("#MemberNumber-field").val("");
+                        loadMembers();
+                        history.back();
+                    }
+                });
+            }
+        </script>
+        
     </body>
 </html>
