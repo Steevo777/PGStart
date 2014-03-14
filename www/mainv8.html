@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <link href="https://s3.amazonaws.com/codiqa-cdn/codiqa.ext.css" rel="stylesheet">
+  <link href="https://s3.amazonaws.com/codiqa-cdn/mobile/1.4.0/jquery.mobile-1.4.0.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="https://s3.amazonaws.com/codiqa-cdn/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+  <script src="https://s3.amazonaws.com/codiqa-cdn/codiqa.ext.js"></script>
+  <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <MemberName>APTA Mobile V2.2</MemberName>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="js/jquery.mobile-1.1.1.min.css" />
+        <script src="js/jquery-1.7.1.min.js"></script>
+        <script src="js/jquery.mobile-1.2.1.min.js"></script>
+        <script src="js/apigee.min.js"></script>
+
+</head>
+<body>
+<div data-role="page" data-control-title="Home" id="page1">
+    <div data-theme="b" data-role="header">
+        <h1 class="ui-title">
+            Tech University
+        </h1>
+    </div>
+    <div role="main" class="ui-content">
+        <ul data-role="listview" data-divider-theme="a" data-inset="true">
+            <li data-role="list-divider" role="heading">
+            </li>
+            <li data-theme="a">
+                <a href="#page4" data-transition="slide">
+                    Map
+                </a>
+            </li>
+            <li data-theme="a">
+                <a href="#page5" data-transition="slide">
+                    Students
+                </a>
+            </li>
+            <li data-theme="a">
+                <a href="#page6" data-transition="slide">
+                    Classes
+                </a>
+            </li>
+            <li data-theme="a">
+                <a href="#page7" data-transition="slide">
+                    Activities
+                </a>
+            </li>
+            <li data-theme="a">
+                <a href="#page8" data-transition="slide">
+                    Faculty
+                </a>
+            </li>
+        </ul>
+        <div data-role="tabbar" data-iconpos="top" data-theme="b">
+            <ul>
+                <li>
+                    <a href="#page4" data-transition="fade" data-theme="" data-icon="home">
+                        Map
+                    </a>
+                </li>
+                <li>
+                    <a href="#page5" data-transition="fade" data-theme="" data-icon="star">
+                        Students
+                    </a>
+                </li>
+                <li>
+                    <a href="#page6" data-transition="fade" data-theme="" data-icon="info">
+                        Classes
+                    </a>
+                </li>
+                <li>
+                    <a href="#page7" data-transition="fade" data-theme="" data-icon="bars">
+                        Activities
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div data-role="page" data-control-title="Map" id="page4">
+    <div data-theme="a" data-role="header">
+        <h1 class="ui-title">
+            Tech Map
+        </h1>
+        
+    </div>
+    <div role="main" class="ui-content">
+        <div role="main" class="ui-content">
+        <div id="googlemapsjs1" class="google-map" style="width: 288px; height: 200px; margin-left: auto; margin-right: auto">
+        </div>
+        <script type="text/javascript">
+                window.CodiqaControls && window.CodiqaControls.register('googlemaps', 'googlemapsjs1', {
+            ready: function(control) {
+
+                control.options = {
+                    zoom: 14,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                control.el = document.getElementById(control._id);
+                control.map = new google.maps.Map(control.el, control.options);
+
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({
+                    'address': 'Reston, VA'
+                }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+
+                        var marker = new google.maps.Marker({
+                            map: control.map,
+                            position: results[0].geometry.location
+                        });
+                        control.center = results[0].geometry.location;
+                        control.map.setCenter(control.center);
+                    }
+                });
+
+            }
+        });
+        </script>
+        
+    </div>
+</div>
+        <div class="ui-field-contain" data-controltype="selectmenu">
+            <label for="selectmenu2">
+                Select Building
+            </label>
+            <select id="selectmenu2" name="">
+                <option value="option1">
+                    Student Hall
+                </option>
+                <option value="value">
+                    Option
+                </option>
+            </select>
+        </div>
+    </div>
+</div>
+<div data-role="page" data-control-title="Students" id="page5">
+    <div data-theme="a" data-role="header">
+        <h4 class="ui-title">
+            Tech Students
+        </h4>
+        <a href="#page1" class="ui-btn ui-btn-left">
+            Home
+        </a>
+        <div data-theme="a" data-role="header">
+            <span class="ui-title">
+            </span>
+        </div>
+    </div>
+    <div role="main" class="ui-content">
+        <script type="text/javascript">
+            app.initialize();
+        
+            //We start by creating an instance of Apigee.Client to carry our App Services credentials        
+            var apigee = new Apigee.Client({
+                orgName:'Steevo777',
+                appName:'sandbox'
+            });
+            
+            // If you lock down your sandbox or use any other app
+            // a user login is required to access the data.
+            //apigee.login("myuser","mypass");
+
+            // We now define my_Members within the global scope
+            var my_Members = new Apigee.Collection( { "client":apigee, "type":"members" } );
+
+
+            $(document).ready(function () {
+                $('#create-button').bind('click', createMember);
+                
+                navigator.geolocation.getCurrentPosition(loadMembers)
+            });
+
+            function loadMembers (location) {
+                
+                my_Members.fetch( // Actual network call
+
+                    // Success Callback
+                    function () {
+                        $('#Members-list').empty();
+                        
+                        while ( my_Members.hasNextEntity() ) {
+                            var current_Member = my_Members.getNextEntity();
+
+                            // Output the Member on the page
+                            $('#Members-list').append('<li><h3>'+current_Member.get('MemberName')+'</h3><p>'+current_Member.get('MemberNumber')+'</p></li>');
+                        }
+                        
+                        // Re-apply jQuery Mobile styles
+                        $('#Members-list').listview('refresh');
+                    },
+
+                    // Failure Callback
+                    function () { alert("read failed"); }
+                );
+            }
+
+            function createMember() {
+
+                new_Member = { "MemberName":$("#MemberName-field").val(),
+                            "MemberNumber":$("#MemberNumber-field").val() };
+
+                my_Members.addEntity(new_Member, function (error, response) {
+                    if (error) {
+                        alert('write failed');
+                    } else {
+                        $("#MemberName-field").val(""), $("#MemberNumber-field").val("");
+                        loadMembers();
+                        history.back();
+                    }
+                });
+            }
+        </script>
+    
+
+        <div data-role="page" data-theme="c" id="page-Members-list">
+            <div data-role="header" data-theme="b">
+                <h1>My Members</h1>
+                <a href="#page-new-Member" id="btn-compose" data-icon="plus" data-iconpos="right" data-inline="true" data-role="button" data-rel="dialog" data-transition="fade" class="ui-btn-right">Add</a>
+            	<a href="googlemap.html" id="btn-compose" data-icon="plus" data-iconpos="right" data-inline="true" data-role="button" data-rel="dialog" data-transition="fade" class="ui-btn-right">Map</a>
+            </div>
+            <div data-role="content">
+                <ul id="Members-list"  data-role="listview" data-inset="false" >
+                    <li>
+                        <h3>First MemberName</h3>
+                        <p>First MemberNumber</p>
+                    </li>
+                    <li>
+                        <h3>Second MemberName</h3>
+                        <p>Second MemberNumber</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div data-role="page" data-theme="b" id="page-new-Member">
+            <div data-role="header" data-theme="b">
+                <h1>Add a New Member</h1>
+            </div>
+            <div data-role="content">
+                <form>
+                    <label for="MemberName-field">MemberName</label>
+                    <textarea id="MemberName-field"></textarea>
+                    <label for="MemberNumber-field">MemberNumber</label>
+                    <textarea id="MemberNumber-field"></textarea>
+                </form>    
+                <a href="#page-Members-list" data-role="button" data-theme="c" data-inline="true">Cancel</a>
+                <button id="create-button" data-inline="true">Create</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div data-role="page" data-control-title="Classes" id="page6">
+    <div data-theme="a" data-role="header">
+        <h1 class="ui-title">
+            Tech Classes
+        </h1>
+        <a href="#page1" class="ui-btn ui-btn-left">
+            Home
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+    </div>
+</div>
+
+<div data-role="page" data-control-title="Activities" id="page7">
+    <div data-theme="a" data-role="header">
+        <h1 class="ui-title">
+            Tech Activities
+        </h1>
+        <a href="#page1" class="ui-btn ui-btn-left">
+            Home
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+    </div>
+</div>
+<div data-role="page" data-control-title="Faculty" id="page8">
+    <div data-theme="a" data-role="header">
+        <h1 class="ui-title">
+            Tech University
+        </h1>
+        <a href="#page1" class="ui-btn ui-btn-left">
+            Home
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+    </div>
+</div>
+</body>
+</html>
